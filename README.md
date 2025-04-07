@@ -9,6 +9,8 @@ INSY Miniprojekt zur erstellung einer REST_API
 | 1.4.2025 | 2:14 - 2:59 | 45 | Rei  |Verbindung mit der Datenbank |
 | 1.4.2025 | 2:59 - 3:08 | 45 | Rei  |Post: /recipies/ programmieren |
 | 1.4.2025 | 3:08 - 3:11 | 45 | Rei  |Postman verwendet |
+| 7.4.2025 | 9:50 - 10:15 | 25 |Ergi  |MySQL Tabellen neu erstellen |
+
 
 
 
