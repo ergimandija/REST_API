@@ -68,3 +68,39 @@ async def startup():
 @app.on_event("shutdown")
 async def shutdown():
     await database.disconnect()
+
+
+
+@app.post("/recipes/", response_model=RecipeOut)
+async def create_recipe(recipe: RecipeCreate):
+    query = recipes_table.insert().values(
+        name=recipe.name,
+        description=recipe.description,
+        steps=recipe.steps
+    )
+    recipe_id = await database.execute(query)
+
+    for ingredient_id in recipe.ingredients:
+        await database.execute(
+            recipe_ingredients_table.insert().values(
+                recipe_id=recipe_id,
+                ingredient_id=ingredient_id
+            )
+        )
+    ingredients_query = sqlalchemy.select([
+        ingredients_table
+    ]).select_from(
+        ingredients_table.join(recipe_ingredients_table,
+                               ingredients_table.c.id == recipe_ingredients_table.c.ingredient_id)
+    ).where(recipe_ingredients_table.c.recipe_id == recipe_id)
+
+    ingredients = await database.fetch_all(ingredients_query)
+
+    return {
+        "id": recipe_id,
+        "name": recipe.name,
+        "description": recipe.description,
+        "steps": recipe.steps,
+        "ingredients": ingredients
+    }
+
