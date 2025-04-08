@@ -105,6 +105,52 @@ async def create_recipe(recipe: RecipeCreate):
     }
 
 
+@app.get("/recipes/", response_model=List[RecipeOut])
+async def get_recipes():
+    recipes_query = recipes_table.select()
+    recipes = await database.fetch_all(recipes_query)
+    result = []
+
+    for recipe in recipes:
+        ingredients_query = sqlalchemy.select([
+            ingredients_table
+        ]).select_from(
+            ingredients_table.join(recipe_ingredients_table,
+                                   ingredients_table.c.id == recipe_ingredients_table.c.ingredient_id)
+        ).where(recipe_ingredients_table.c.recipe_id == recipe["id"])
+
+        ingredients = await database.fetch_all(ingredients_query)
+
+        result.append({
+            **recipe,
+            "ingredients": ingredients
+        })
+
+    return result
+
+@app.get("/recipes/{recipe_id}", response_model=RecipeOut)
+async def get_recipe(recipe_id: int):
+    query = recipes_table.select().where(recipes_table.c.id == recipe_id)
+    recipe = await database.fetch_one(query)
+
+    if not recipe:
+        raise HTTPException(status_code=404, detail="Recipe not found")
+
+    ingredients_query = sqlalchemy.select([
+        ingredients_table
+    ]).select_from(
+        ingredients_table.join(recipe_ingredients_table,
+                               ingredients_table.c.id == recipe_ingredients_table.c.ingredient_id)
+    ).where(recipe_ingredients_table.c.recipe_id == recipe_id)
+
+    ingredients = await database.fetch_all(ingredients_query)
+
+    return {
+        **recipe,
+        "ingredients": ingredients
+    }
+
+
 @app.post("/ingredients/", response_model=IngredientOut)
 async def create_ingredient(ingredient: IngredientCreate):
     query = ingredients_table.insert().values(name=ingredient.name, type=ingredient.type)
