@@ -11,6 +11,7 @@ INSY Miniprojekt zur erstellung einer REST_API
 | 1.4.2025 | 3:08 - 3:11 | 45 | Rei  |Postman verwendet |
 | 7.4.2025 | 9:50 - 10:15 | 25 |Ergi  |MySQL Tabellen neu erstellen |
 | 8.4.2025 | 14:00 - 14:13 | 13 |Rei  |Fast Api Models neu erstellen |
+| 8.4.2025 | 14:13 - 14:29 | 16 |Rei  |Fast Api Ingredients Insert Funktion |
 
 
 
