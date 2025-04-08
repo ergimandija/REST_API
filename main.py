@@ -104,3 +104,10 @@ async def create_recipe(recipe: RecipeCreate):
         "ingredients": ingredients
     }
 
+
+@app.post("/ingredients/", response_model=IngredientOut)
+async def create_ingredient(ingredient: IngredientCreate):
+    query = ingredients_table.insert().values(name=ingredient.name, type=ingredient.type)
+    ingredient_id = await database.execute(query)
+    return {**ingredient.dict(), "id": ingredient_id}
+
