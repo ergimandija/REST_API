@@ -13,14 +13,24 @@ recipes_table = sqlalchemy.Table(
     "recipes",
     metadata,
     sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("name", sqlalchemy.String),
+    sqlalchemy.Column("name", sqlalchemy.String(50)),
+    sqlalchemy.Column("description", sqlalchemy.String(200)),
+    sqlalchemy.Column("steps", sqlalchemy.String(500)),
 )
 
 ingredients_table = sqlalchemy.Table(
     "ingredients",
     metadata,
     sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("name", sqlalchemy.String),
+    sqlalchemy.Column("name", sqlalchemy.String(50)),
+    sqlalchemy.Column("type", sqlalchemy.String(50)),
+)
+
+recipe_ingredients_table = sqlalchemy.Table(
+    "recipe_ingredients",
+    metadata,
+    sqlalchemy.Column("recipe_id", sqlalchemy.Integer, sqlalchemy.ForeignKey("recipes.id"), primary_key=True),
+    sqlalchemy.Column("ingredient_id", sqlalchemy.Integer, sqlalchemy.ForeignKey("ingredients.id"), primary_key=True),
 )
 
 engine = sqlalchemy.create_engine(DATABASE_URL)
@@ -28,16 +38,28 @@ metadata.create_all(engine)
 
 app = FastAPI()
 
-class Ingredient(BaseModel):
+class IngredientCreate(BaseModel):
     name: str
     type: str
-    r_id: int
 
-class Recipe(BaseModel):
+class IngredientOut(BaseModel):
+    id: int
+    name: str
+    type: str
+
+class RecipeCreate(BaseModel):
     name: str
     description: str
     steps: str
     ingredients: List[int]
+
+class RecipeOut(BaseModel):
+    id: int
+    name: str
+    description: str
+    steps: str
+    ingredients: List[IngredientOut]
+
 
 @app.on_event("startup")
 async def startup():
@@ -46,4 +68,3 @@ async def startup():
 @app.on_event("shutdown")
 async def shutdown():
     await database.disconnect()
-
