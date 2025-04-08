@@ -39,6 +39,7 @@ metadata.create_all(engine)
 app = FastAPI()
 
 class IngredientCreate(BaseModel):
+    id: int
     name: str
     type: str
 
@@ -48,6 +49,7 @@ class IngredientOut(BaseModel):
     type: str
 
 class RecipeCreate(BaseModel):
+    id: int
     name: str
     description: str
     steps: str
@@ -111,3 +113,15 @@ async def create_ingredient(ingredient: IngredientCreate):
     ingredient_id = await database.execute(query)
     return {**ingredient.dict(), "id": ingredient_id}
 
+@app.get("/ingredients/", response_model=List[IngredientOut])
+async def get_ingredients():
+    query = ingredients_table.select()
+    return await database.fetch_all(query)
+
+@app.get("/ingredients/{ingredient_id}", response_model=IngredientOut)
+async def get_ingredient(ingredient_id: int):
+    query = ingredients_table.select().where(ingredients_table.c.id == ingredient_id)
+    ingredient = await database.fetch_one(query)
+    if not ingredient:
+        raise HTTPException(status_code=404, detail="Ingredient not found")
+    return ingredient
