@@ -1,5 +1,20 @@
-# REST_API
-INSY Miniprojekt zur erstellung einer REST_API
+# Recipe Platform API
+
+This API is built using FastAPI and SQLAlchemy, providing endpoints to manage recipes and ingredients in a relational database.
+
+## Features
+
+- **Create, Read, Update, Delete (CRUD) Operations**
+  - Manage recipes and ingredients through dedicated endpoints.
+- **Database Integration**
+  - Utilizes SQLAlchemy for ORM and database operations.
+- **RESTful Endpoints**
+  - Implements CRUD operations for recipes and ingredients.
+  
+### Prerequisites
+
+- Python 3.7+
+- MySQL database (or compatible with SQLAlchemy)
 
 | Datum      | Uhrzeit von - Uhrzeit bis |  Dauer in Minuten | Name  | Arbeitbeschreibung  |
 |--------------|----------|-----------|---------|---------|
