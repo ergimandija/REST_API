@@ -34,4 +34,27 @@ This API is built using FastAPI and SQLAlchemy, providing endpoints to manage re
 
 
 
+# Endpoints
+
+## Recipes
+
+- **POST** `/recipes/`  
+  Create a new recipe.
+
+- **GET** `/recipes/`  
+  Retrieve all recipes.
+
+- **GET** `/recipes/{recipe_id}`  
+  Retrieve a specific recipe by ID.
+
+## Ingredients
+
+- **POST** `/ingredients/`  
+  Create a new ingredient.
+
+- **GET** `/ingredients/`  
+  Retrieve all ingredients.
+
+- **GET** `/ingredients/{ingredient_id}`  
+  Retrieve a specific ingredient by ID.
 
