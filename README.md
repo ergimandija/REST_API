@@ -1,6 +1,7 @@
-# Recipe Platform API
+e# Recipe Platform API
 
 This API is built using FastAPI and SQLAlchemy, providing endpoints to manage recipes and ingredients in a relational database.
+![ER_Diagramm](https://github.com/user-attachments/assets/007d711b-8f9d-4704-93a9-2fe209879da4)
 
 ## Features
 
