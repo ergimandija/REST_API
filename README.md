@@ -43,21 +43,29 @@ This API is built using FastAPI and SQLAlchemy, providing endpoints to manage re
 
 - **POST** `/recipes/`  
   Create a new recipe.
+![image](https://github.com/user-attachments/assets/02a6be2c-d647-47d1-aa89-7440f3417fc1)
+
 
 - **GET** `/recipes/`  
   Retrieve all recipes.
+![image](https://github.com/user-attachments/assets/25f8e995-0d62-406e-91a2-e937235ac25c)
 
 - **GET** `/recipes/{recipe_id}`  
   Retrieve a specific recipe by ID.
+![image](https://github.com/user-attachments/assets/2cd2b4db-7c60-4ce3-92e6-d8e8c720fa63)
+
 
 ## Ingredients
 
 - **POST** `/ingredients/`  
   Create a new ingredient.
+![image](https://github.com/user-attachments/assets/20332e90-d63f-4de0-aa30-0d4993b7b6bf)
 
 - **GET** `/ingredients/`  
   Retrieve all ingredients.
+![image](https://github.com/user-attachments/assets/4a5f5bd8-3a55-4669-8dfb-ff723b18b3cd)
 
 - **GET** `/ingredients/{ingredient_id}`  
   Retrieve a specific ingredient by ID.
+![image](https://github.com/user-attachments/assets/1fad085e-41da-42aa-8646-c47f4e85dc94)
 
