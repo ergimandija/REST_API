@@ -28,9 +28,11 @@ This API is built using FastAPI and SQLAlchemy, providing endpoints to manage re
 | 8.4.2025 | 14:00 - 14:13 | 13 |Rei  |Fast Api Models neu erstellen |
 | 8.4.2025 | 14:00 - 14:30 | 30 |Ergi  |Post von Ingredients Programmieren |
 | 8.4.2025 | 14:13 - 14:29 | 16 |Rei  |Fast Api Ingredients Insert Funktion |
+| 8.4.2025 | 14:30 - 15:15 | 40 |Rei  |Gets von Recipes Programmieren |
 | 8.4.2025 | 14:40 - 15:20 | 40 |Ergi  |Gets von Ingredients Programmieren |
 | 14.4.2025 | 9:40 - 10:20 | 40 |Ergi  |Postman Tests erstellen|
 | 15.4.2025 | 13:45 - 14:30 | 40 |Ergi  |Bugfixing damit Postman Tests Funktionieren|
+| 15.4.2025 | 13:45 - 14:30 | 40 |Rei  |Bugfixing damit Postman Tests Funktionieren|
 
 
 
